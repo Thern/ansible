@@ -144,6 +144,7 @@
     owner: "{{ ansible_user }}"
     mode: "u=rwx,g=rx,o="
 
+
 - name: Copy config file to user home directory
   copy:
     src: /etc/rancher/k3s/k3s.yaml
@@ -151,6 +152,15 @@
     remote_src: yes
     owner: "{{ ansible_user }}"
     mode: "u=rw,g=,o="
+
+- name: Debugging
+  debug:
+    msg: "{{ apiserver_endpoint }}"
+
+- name: Debugging
+  debug:
+    msg: "{{ system_timezone }}"
+
 
 - name: Configure kubectl cluster to {{ endpoint_url }}
   command: >-

@@ -11,3 +11,12 @@
   apt:
     name: linux-modules-extra-raspi
     state: present
+
+- name: Overwrite firmware config.txt file
+  template:
+    src: "config.txt.j2"
+    dest: "/boot/firmware/config.txt"
+    owner: root
+    group: root
+    mode: 0755
+  notify: reboot
